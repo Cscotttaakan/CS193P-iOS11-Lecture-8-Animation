@@ -21,6 +21,7 @@ extension PlayingCardView {
 			duration: Constants.matchCardAnimationDuration,
 			curve: .linear ,
 			animations: {
+				self.center = self.superview!.center
 				self.transform = CGAffineTransform.identity.scaledBy(x: Constants.matchCardAnimationScaleUp,
 																	 y: Constants.matchCardAnimationScaleUp)
 			})

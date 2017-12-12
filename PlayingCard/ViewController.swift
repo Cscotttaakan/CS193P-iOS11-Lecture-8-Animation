@@ -16,8 +16,9 @@ struct Constants {
 	static var matchCardAnimationScaleDown: CGFloat = 0.1
 	static var behaviorResistance: CGFloat = 0
 	static var behaviorElasticity: CGFloat = 1.0
-	static var behaviorPushMagnitudeMinimum: CGFloat = 1.0
-	static var behaviorPushMagnitudeRandomFactor: CGFloat = 2.0
+	static var behaviorPushMagnitudeMinimum: CGFloat = 0.5
+	static var behaviorPushMagnitudeRandomFactor: CGFloat = 1.0
+	static var cardViewScaleFactor: CGFloat = 5
 }
 
 
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
 			let card = deck.draw()!
 			cards += [card, card]
 		}
-		let cardScaleFactor = (view.bounds.width / 6)/cardViews[0].frame.width
+		let cardScaleFactor = (view.bounds.width / Constants.cardViewScaleFactor)/cardViews[0].frame.width
 		for cardView in cardViews {
 			cardView.frame.size.width *= cardScaleFactor
 			cardView.frame.size.height *= cardScaleFactor
