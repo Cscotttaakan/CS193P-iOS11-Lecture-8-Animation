@@ -27,17 +27,17 @@ class CardBehavior: UIDynamicBehavior {
 		let push = UIPushBehavior(items: [item], mode: .instantaneous)
 		if let referenceBounds = dynamicAnimator?.referenceView?.bounds {
 			let center = CGPoint(x: referenceBounds.midX, y: referenceBounds.midY)
-			push.angle = (CGFloat.pi/2).arc4Random
+			push.angle = (CGFloat.pi/2).arc4random
 			switch (item.center.x, item.center.y) {
 			case let (x, y) where x < center.x && y > center.y:
 				push.angle = -1 * push.angle
 			case let (x, y) where x > center.x:
 				push.angle = y < center.y ? CGFloat.pi-push.angle: CGFloat.pi+push.angle
 			default:
-				push.angle = (CGFloat.pi*2).arc4Random
+				push.angle = (CGFloat.pi*2).arc4random
 			}
 		}
-		push.magnitude = CGFloat(Constants.behaviorPushMagnitudeMinimum) + CGFloat(Constants.behaviorPushMagnitudeRandomFactor).arc4Random
+		push.magnitude = CGFloat(Constants.behaviorPushMagnitudeMinimum) + CGFloat(Constants.behaviorPushMagnitudeRandomFactor).arc4random
 		push.action = { [unowned push, weak self] in
 			self?.removeChildBehavior(push)
 		}
@@ -70,8 +70,9 @@ class CardBehavior: UIDynamicBehavior {
 
 
 extension CGFloat {
-	var arc4Random: CGFloat {
-		return self * CGFloat(drand48())
-	}
+    var arc4random: CGFloat {
+        return self * (CGFloat(arc4random_uniform(UInt32.max))/CGFloat(UInt32.max))
+    }
 }
+
 

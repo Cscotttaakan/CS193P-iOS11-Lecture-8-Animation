@@ -18,9 +18,8 @@ struct Constants {
 	static var behaviorElasticity: CGFloat = 1.0
 	static var behaviorPushMagnitudeMinimum: CGFloat = 0.5
 	static var behaviorPushMagnitudeRandomFactor: CGFloat = 1.0
-	static var cardViewScaleFactor: CGFloat = 5
+	static var cardsPerMainViewWidth: CGFloat = 5
 }
-
 
 class ViewController: UIViewController {
 
@@ -38,7 +37,7 @@ class ViewController: UIViewController {
 			let card = deck.draw()!
 			cards += [card, card]
 		}
-		let cardScaleFactor = (view.bounds.width / Constants.cardViewScaleFactor)/cardViews[0].frame.width
+		let cardScaleFactor = (view.bounds.width / Constants.cardsPerMainViewWidth)/cardViews[0].frame.width
 		for cardView in cardViews {
 			cardView.frame.size.width *= cardScaleFactor
 			cardView.frame.size.height *= cardScaleFactor
@@ -62,7 +61,6 @@ class ViewController: UIViewController {
 	}
 	
 	private var matchedCardViews: Set<PlayingCardView> = []
-	
 	private var lastChoosenCardview: PlayingCardView?
 	
 	@IBAction func flipCard(_ sender: UITapGestureRecognizer) {
